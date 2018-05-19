@@ -630,11 +630,12 @@ namespace ModSync
                 if (MessageBox.Show("真的要停止更新吗？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     wc.CancelAsync();
-                    updateThread.Abort();
+                    try { updateThread.Abort(); } catch { };
                     downloadinfo.Text = "空闲";
                     downloadinfoprog.Value = 0;
                     AddLog("更新中断");
                     syncbutton.Text = "同步";
+                    return;
                 }
             }
             if (ConfigSelect.SelectedIndex == -1) return;
@@ -704,6 +705,8 @@ namespace ModSync
                     }
                     Invoke(new MethodInvoker(() => {
                         AddLog("更新完成");
+                        updateThread = null;
+                        syncbutton.Text = "同步";
                     }));
                 }
                 catch (Exception err){
