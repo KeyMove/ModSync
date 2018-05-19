@@ -83,9 +83,9 @@ namespace ModSync.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Syncalt {
+        internal static System.Drawing.Bitmap x28 {
             get {
-                object obj = ResourceManager.GetObject("Syncalt", resourceCulture);
+                object obj = ResourceManager.GetObject("x28", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Headpanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.exit = new System.Windows.Forms.Button();
             this.bt1 = new System.Windows.Forms.Button();
             this.bt0 = new System.Windows.Forms.Button();
@@ -40,12 +40,16 @@
             this.ConfigDelWhiteFile = new System.Windows.Forms.LinkLabel();
             this.ConfigAddWhiteFile = new System.Windows.Forms.LinkLabel();
             this.ConfigWhiteFlie = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ConfigSaveConfig = new System.Windows.Forms.Button();
-            this.ConfigList = new System.Windows.Forms.ComboBox();
+            this.ConfigListSelect = new System.Windows.Forms.ComboBox();
+            this.ConfigFileType = new System.Windows.Forms.TextBox();
             this.ConfigServerURL = new System.Windows.Forms.TextBox();
             this.ConfigDelConfig = new System.Windows.Forms.LinkLabel();
+            this.ConfigCreateInfo = new System.Windows.Forms.LinkLabel();
             this.ConfigCloneConfig = new System.Windows.Forms.LinkLabel();
+            this.ConfigName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ConfigSyncDir = new System.Windows.Forms.ComboBox();
@@ -53,20 +57,20 @@
             this.ConfigDirDEL = new System.Windows.Forms.LinkLabel();
             this.ConfigDirADD = new System.Windows.Forms.LinkLabel();
             this.S1 = new System.Windows.Forms.Panel();
+            this.LAB = new System.Windows.Forms.Label();
+            this.LogPanel = new System.Windows.Forms.Panel();
             this.downloadinfoprog = new System.Windows.Forms.ProgressBar();
             this.loglist = new System.Windows.Forms.ListBox();
             this.downloadinfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.syncbutton = new System.Windows.Forms.Button();
             this.ConfigSelect = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ConfigFileType = new System.Windows.Forms.TextBox();
-            this.ConfigCreateInfo = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Headpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.S2.SuspendLayout();
             this.ConfigWhiteFileEnable.SuspendLayout();
             this.S1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Headpanel
@@ -80,7 +84,7 @@
             this.Headpanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Headpanel.Location = new System.Drawing.Point(0, 0);
             this.Headpanel.Name = "Headpanel";
-            this.Headpanel.Size = new System.Drawing.Size(800, 28);
+            this.Headpanel.Size = new System.Drawing.Size(400, 28);
             this.Headpanel.TabIndex = 5;
             this.Headpanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.Headpanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -97,16 +101,6 @@
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ModSync.Properties.Resources.Syncalt;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // exit
             // 
             this.exit.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -116,7 +110,7 @@
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit.Font = new System.Drawing.Font("宋体", 12F);
             this.exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exit.Location = new System.Drawing.Point(778, 0);
+            this.exit.Location = new System.Drawing.Point(378, 0);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(22, 28);
             this.exit.TabIndex = 6;
@@ -162,12 +156,13 @@
             this.S2.Controls.Add(this.label5);
             this.S2.Controls.Add(this.label6);
             this.S2.Controls.Add(this.ConfigSaveConfig);
-            this.S2.Controls.Add(this.ConfigList);
+            this.S2.Controls.Add(this.ConfigListSelect);
             this.S2.Controls.Add(this.ConfigFileType);
             this.S2.Controls.Add(this.ConfigServerURL);
             this.S2.Controls.Add(this.ConfigDelConfig);
             this.S2.Controls.Add(this.ConfigCreateInfo);
             this.S2.Controls.Add(this.ConfigCloneConfig);
+            this.S2.Controls.Add(this.ConfigName);
             this.S2.Controls.Add(this.label4);
             this.S2.Controls.Add(this.label3);
             this.S2.Controls.Add(this.ConfigSyncDir);
@@ -237,6 +232,17 @@
             this.ConfigWhiteFlie.Size = new System.Drawing.Size(221, 20);
             this.ConfigWhiteFlie.TabIndex = 0;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(34, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "文件类型";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -252,19 +258,29 @@
             // 
             this.ConfigSaveConfig.Location = new System.Drawing.Point(307, 216);
             this.ConfigSaveConfig.Name = "ConfigSaveConfig";
-            this.ConfigSaveConfig.Size = new System.Drawing.Size(75, 23);
+            this.ConfigSaveConfig.Size = new System.Drawing.Size(77, 23);
             this.ConfigSaveConfig.TabIndex = 4;
             this.ConfigSaveConfig.Text = "保存配置";
             this.ConfigSaveConfig.UseVisualStyleBackColor = true;
             this.ConfigSaveConfig.Click += new System.EventHandler(this.ConfigSaveConfig_Click);
             // 
-            // ConfigList
+            // ConfigListSelect
             // 
-            this.ConfigList.FormattingEnabled = true;
-            this.ConfigList.Location = new System.Drawing.Point(76, 217);
-            this.ConfigList.Name = "ConfigList";
-            this.ConfigList.Size = new System.Drawing.Size(223, 20);
-            this.ConfigList.TabIndex = 1;
+            this.ConfigListSelect.FormattingEnabled = true;
+            this.ConfigListSelect.Location = new System.Drawing.Point(76, 217);
+            this.ConfigListSelect.Name = "ConfigListSelect";
+            this.ConfigListSelect.Size = new System.Drawing.Size(223, 20);
+            this.ConfigListSelect.TabIndex = 1;
+            this.ConfigListSelect.SelectedIndexChanged += new System.EventHandler(this.ConfigList_SelectedIndexChanged);
+            // 
+            // ConfigFileType
+            // 
+            this.ConfigFileType.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.ConfigFileType.Location = new System.Drawing.Point(93, 88);
+            this.ConfigFileType.Name = "ConfigFileType";
+            this.ConfigFileType.Size = new System.Drawing.Size(221, 21);
+            this.ConfigFileType.TabIndex = 3;
+            this.ConfigFileType.Text = "jar;";
             // 
             // ConfigServerURL
             // 
@@ -281,12 +297,25 @@
             // 
             this.ConfigDelConfig.AutoSize = true;
             this.ConfigDelConfig.BackColor = System.Drawing.Color.Transparent;
-            this.ConfigDelConfig.Location = new System.Drawing.Point(353, 199);
+            this.ConfigDelConfig.Location = new System.Drawing.Point(355, 199);
             this.ConfigDelConfig.Name = "ConfigDelConfig";
             this.ConfigDelConfig.Size = new System.Drawing.Size(29, 12);
             this.ConfigDelConfig.TabIndex = 2;
             this.ConfigDelConfig.TabStop = true;
             this.ConfigDelConfig.Text = "删除";
+            this.ConfigDelConfig.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ConfigDelConfig_LinkClicked);
+            // 
+            // ConfigCreateInfo
+            // 
+            this.ConfigCreateInfo.AutoSize = true;
+            this.ConfigCreateInfo.BackColor = System.Drawing.Color.Transparent;
+            this.ConfigCreateInfo.Location = new System.Drawing.Point(222, 199);
+            this.ConfigCreateInfo.Name = "ConfigCreateInfo";
+            this.ConfigCreateInfo.Size = new System.Drawing.Size(77, 12);
+            this.ConfigCreateInfo.TabIndex = 2;
+            this.ConfigCreateInfo.TabStop = true;
+            this.ConfigCreateInfo.Text = "创建同步文件";
+            this.ConfigCreateInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ConfigCreateInfo_LinkClicked);
             // 
             // ConfigCloneConfig
             // 
@@ -298,6 +327,17 @@
             this.ConfigCloneConfig.TabIndex = 2;
             this.ConfigCloneConfig.TabStop = true;
             this.ConfigCloneConfig.Text = "克隆";
+            this.ConfigCloneConfig.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ConfigCloneConfig_LinkClicked);
+            // 
+            // ConfigName
+            // 
+            this.ConfigName.AutoSize = true;
+            this.ConfigName.BackColor = System.Drawing.Color.Transparent;
+            this.ConfigName.ForeColor = System.Drawing.SystemColors.Window;
+            this.ConfigName.Location = new System.Drawing.Point(74, 199);
+            this.ConfigName.Name = "ConfigName";
+            this.ConfigName.Size = new System.Drawing.Size(0, 12);
+            this.ConfigName.TabIndex = 1;
             // 
             // label4
             // 
@@ -369,6 +409,8 @@
             // S1
             // 
             this.S1.BackgroundImage = global::ModSync.Properties.Resources.L1;
+            this.S1.Controls.Add(this.LAB);
+            this.S1.Controls.Add(this.LogPanel);
             this.S1.Controls.Add(this.downloadinfoprog);
             this.S1.Controls.Add(this.loglist);
             this.S1.Controls.Add(this.downloadinfo);
@@ -381,6 +423,25 @@
             this.S1.TabIndex = 6;
             this.S1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.S1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // LAB
+            // 
+            this.LAB.AutoSize = true;
+            this.LAB.Location = new System.Drawing.Point(12, 222);
+            this.LAB.Name = "LAB";
+            this.LAB.Size = new System.Drawing.Size(0, 12);
+            this.LAB.TabIndex = 0;
+            // 
+            // LogPanel
+            // 
+            this.LogPanel.AutoScroll = true;
+            this.LogPanel.BackColor = System.Drawing.Color.Transparent;
+            this.LogPanel.Location = new System.Drawing.Point(12, 39);
+            this.LogPanel.Name = "LogPanel";
+            this.LogPanel.Size = new System.Drawing.Size(374, 142);
+            this.LogPanel.TabIndex = 6;
+            this.LogPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.LogPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // downloadinfoprog
             // 
@@ -395,7 +456,7 @@
             this.loglist.ItemHeight = 12;
             this.loglist.Location = new System.Drawing.Point(272, 39);
             this.loglist.Name = "loglist";
-            this.loglist.Size = new System.Drawing.Size(114, 148);
+            this.loglist.Size = new System.Drawing.Size(114, 136);
             this.loglist.TabIndex = 3;
             // 
             // downloadinfo
@@ -403,7 +464,7 @@
             this.downloadinfo.AutoSize = true;
             this.downloadinfo.BackColor = System.Drawing.Color.Transparent;
             this.downloadinfo.ForeColor = System.Drawing.SystemColors.Control;
-            this.downloadinfo.Location = new System.Drawing.Point(26, 184);
+            this.downloadinfo.Location = new System.Drawing.Point(10, 184);
             this.downloadinfo.Name = "downloadinfo";
             this.downloadinfo.Size = new System.Drawing.Size(29, 12);
             this.downloadinfo.TabIndex = 0;
@@ -428,71 +489,51 @@
             this.syncbutton.TabIndex = 4;
             this.syncbutton.Text = "同步";
             this.syncbutton.UseVisualStyleBackColor = true;
+            this.syncbutton.Click += new System.EventHandler(this.syncbutton_Click);
             // 
             // ConfigSelect
             // 
+            this.ConfigSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ConfigSelect.FormattingEnabled = true;
             this.ConfigSelect.Location = new System.Drawing.Point(45, 13);
             this.ConfigSelect.Name = "ConfigSelect";
             this.ConfigSelect.Size = new System.Drawing.Size(341, 20);
             this.ConfigSelect.TabIndex = 1;
             // 
-            // label5
+            // pictureBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(34, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "文件类型";
-            // 
-            // ConfigFileType
-            // 
-            this.ConfigFileType.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.ConfigFileType.Location = new System.Drawing.Point(93, 88);
-            this.ConfigFileType.Name = "ConfigFileType";
-            this.ConfigFileType.Size = new System.Drawing.Size(221, 21);
-            this.ConfigFileType.TabIndex = 3;
-            this.ConfigFileType.Text = "jar;";
-            this.ConfigFileType.Enter += new System.EventHandler(this.ConfigServerURL_Enter);
-            this.ConfigFileType.Leave += new System.EventHandler(this.ConfigServerURL_Leave);
-            // 
-            // ConfigCreateInfo
-            // 
-            this.ConfigCreateInfo.AutoSize = true;
-            this.ConfigCreateInfo.BackColor = System.Drawing.Color.Transparent;
-            this.ConfigCreateInfo.Location = new System.Drawing.Point(222, 199);
-            this.ConfigCreateInfo.Name = "ConfigCreateInfo";
-            this.ConfigCreateInfo.Size = new System.Drawing.Size(77, 12);
-            this.ConfigCreateInfo.TabIndex = 2;
-            this.ConfigCreateInfo.TabStop = true;
-            this.ConfigCreateInfo.Text = "创建同步文件";
-            this.ConfigCreateInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ConfigCreateInfo_LinkClicked);
+            this.pictureBox1.Image = global::ModSync.Properties.Resources.x28;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 278);
+            this.ClientSize = new System.Drawing.Size(400, 278);
             this.Controls.Add(this.S2);
             this.Controls.Add(this.S1);
             this.Controls.Add(this.Headpanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Mod同步器";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.Headpanel.ResumeLayout(false);
             this.Headpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.S2.ResumeLayout(false);
             this.S2.PerformLayout();
             this.ConfigWhiteFileEnable.ResumeLayout(false);
             this.ConfigWhiteFileEnable.PerformLayout();
             this.S1.ResumeLayout(false);
             this.S1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -524,7 +565,7 @@
         private System.Windows.Forms.LinkLabel ConfigAddWhiteFile;
         private System.Windows.Forms.LinkLabel ConfigTestLink;
         private System.Windows.Forms.Button ConfigSaveConfig;
-        private System.Windows.Forms.ComboBox ConfigList;
+        private System.Windows.Forms.ComboBox ConfigListSelect;
         private System.Windows.Forms.LinkLabel ConfigDelConfig;
         private System.Windows.Forms.ProgressBar downloadinfoprog;
         private System.Windows.Forms.Label downloadinfo;
@@ -533,6 +574,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox ConfigFileType;
         private System.Windows.Forms.LinkLabel ConfigCreateInfo;
+        private System.Windows.Forms.Label ConfigName;
+        private System.Windows.Forms.Panel LogPanel;
+        private System.Windows.Forms.Label LAB;
     }
 }
 
