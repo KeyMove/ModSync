@@ -49,6 +49,16 @@ namespace ModSync
             }
         }
 
+        class ConfigInfo
+        {
+            List<string> path;
+            List<string> whitefile;
+            List<string> filetype;
+            string name;
+            string fileurl;
+
+        }
+
         class MoveEffect
         {
             Timer time;
@@ -129,12 +139,18 @@ namespace ModSync
                 //    StartPoint[i] = p;
                 //}
             }
+
+            public bool isIdle()
+            {
+                return !time.Enabled;
+            }
         }
 
         public Form1()
         {
             InitializeComponent();
             SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW);
+            ConfigServerURL.Tag = false;
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -174,6 +190,7 @@ namespace ModSync
                 eff.AddControl(S1);
                 eff.AddControl(S2);
             }
+            if (!eff.isIdle()) return;
             int id = int.Parse((string)(((Control)sender).Tag));
             if (id != lastselectid)
             {
@@ -181,7 +198,15 @@ namespace ModSync
                 if (id == 1)
                 {
                     eff.Move(-400, 0);
-
+                    if (ConfigList.Items.Count == 0)
+                    {
+                        ConfigList.Text = "新配置1";
+                    }
+                    else
+                    {
+                        if (ConfigSelect.SelectedIndex != -1)
+                            ConfigList.SelectedIndex = ConfigSelect.SelectedIndex;
+                    }
 
                 }
                 else
@@ -192,6 +217,100 @@ namespace ModSync
                 bt1.BackColor = bt0.BackColor;
                 bt0.BackColor = c;
             }
+        }
+
+        private void ConfigServerURL_Enter(object sender, EventArgs e)
+        {
+            if ((bool)ConfigServerURL.Tag == false)
+                ConfigServerURL.Text = "";
+            ConfigServerURL.ForeColor = Color.Black;
+        }
+
+        private void ConfigServerURL_Leave(object sender, EventArgs e)
+        {
+            if (ConfigServerURL.Text == "")
+            {
+                ConfigServerURL.Tag = false;
+                ConfigServerURL.Text = "支持github、ftp服务器";
+                ConfigServerURL.ForeColor = Color.LightGray;
+            }
+            else
+                ConfigServerURL.Tag = true;
+        }
+
+        FolderBrowserDialog fbd = new FolderBrowserDialog();
+        private void ConfigDirADD_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (fbd.SelectedPath == "")
+                fbd.SelectedPath = Directory.GetCurrentDirectory();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                string path = fbd.SelectedPath;
+                ConfigSyncDir.Items.Add(path);
+                if (ConfigSyncDir.SelectedIndex == -1)
+                    ConfigSyncDir.SelectedIndex = 0;
+            }
+        }
+
+        private void ConfigDirDEL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ConfigSyncDir.SelectedIndex == -1) return;
+            ConfigSyncDir.Items.RemoveAt(ConfigSyncDir.SelectedIndex);
+            if(ConfigSyncDir.Items.Count!=0)
+                ConfigSyncDir.SelectedIndex = 0;
+        }
+
+        private void ConfigWhiteFileCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigWhiteFileEnable.Visible = ConfigWhiteFileCheck.Checked;
+        }
+
+        private void ConfigTestLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void ConfigSaveConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfigCreateInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ConfigSyncDir.Items.Count == 0) return;
+            string type = ConfigFileType.Text;
+            if (type == "") return;
+            List<string> types;
+            StringBuilder sb = new StringBuilder();
+            if (type.IndexOf(';') != -1)
+                types = type.Split(';').ToList();
+            else
+            {
+                types = new List<string>();
+                types.Add(type);
+            }
+            S2.Enabled = false;
+            try { 
+            foreach(string path in ConfigSyncDir.Items)
+            {
+                FileInfo[] files=new DirectoryInfo(path).GetFiles();
+                foreach(var f in files)
+                {
+                    if (types.Contains(f.Extension.Substring(1)))
+                    {
+                        sb.Append(GetMD5HashFromFile(f.FullName));
+                        sb.Append('=');
+                        sb.AppendLine(f.Name);
+                    }
+                }
+            }
+            StreamWriter sw = new StreamWriter(new FileStream(Directory.GetCurrentDirectory() + "\\modlist.txt", FileMode.OpenOrCreate));
+            sw.Write(sb.ToString());
+            sw.Flush();
+            sw.Close();
+            }
+            catch (Exception err){ MessageBox.Show(err.ToString()); }
+            S2.Enabled = true;
         }
     }
 }

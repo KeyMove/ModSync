@@ -1,0 +1,10 @@
+4e9d2168b4c4dc061ec62754a492f3cd=【本地美化】JEI物品查询 4.9.1.168.jar
+4bfc1c95dde8ec08568e01bfaa61e7c5=【本地美化】OptiFine渲染优化 HD_U_D1.jar
+0b0fca02b35cb1be68f707c316bb9afb=【本地美化】动态光源.jar
+6afe7d7e74d435cfd6cc9ceb95fc271a=【本地美化】方块粒子 2.3.9.jar
+b743562dac1b5334c20ac87b54c0b518=【本地美化】旅行地图 5.5.2.jar
+928e8f3bfafe04209c5272e0315af43c=【本地美化】更多动作 0.24.jar
+6d03d0f2d87a80467d5d3e3ce2a80e98=【本地美化】物品提示 1.8.24-B39.jar
+f4bdcba26a2f6d3dff66856e47ebbecc=【本地美化】真实黑暗 2.0.jar
+4205e7ed57ff9f708fef53c4336e44aa=【本地美化】肩部视角 1.12.jar
+1e2e33e5710394252abc4b014bc3dcbd=【本地美化】背包整理 1.63.jar
