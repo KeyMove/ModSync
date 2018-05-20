@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -10,9 +9,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace ModSync
@@ -87,14 +84,20 @@ namespace ModSync
             if (File.Exists(configPath))
             {
                 XmlSerializer ser = new XmlSerializer(typeof(List<ConfigInfo>));
-                ConfigList=(List<ConfigInfo>)ser.Deserialize(new FileStream(configPath, FileMode.Open));
-                string curr = Directory.GetCurrentDirectory();
-                foreach (var info in ConfigList)
+                FileStream fs = new FileStream(configPath, FileMode.Open);
+                try
                 {
-                    for (int i = 0; i < info.path.Count; i++)
-                        if (info.path[i][0] == '~')
-                            info.path[i] = curr + info.path[i].Substring(1);
+                    ConfigList = (List<ConfigInfo>)ser.Deserialize(fs);
+                    string curr = Directory.GetCurrentDirectory();
+                    foreach (var info in ConfigList)
+                    {
+                        for (int i = 0; i < info.path.Count; i++)
+                            if (info.path[i][0] == '~')
+                                info.path[i] = curr + info.path[i].Substring(1);
+                    }
                 }
+                catch { }
+                fs.Close();
             }
         }
 
@@ -107,8 +110,21 @@ namespace ModSync
                 for (int i = 0; i < info.path.Count; i++)
                     info.path[i] = info.path[i].Replace(curr, "~");
             }
-            File.Delete(configPath);
-            ser.Serialize(new FileStream(configPath,FileMode.OpenOrCreate), ConfigList);
+            try
+            {
+                if(File.Exists(configPath))
+                    File.Delete(configPath);
+            }
+            catch { }
+            try
+            {
+                
+                FileStream fs = new FileStream(configPath, FileMode.OpenOrCreate);
+                ser.Serialize(fs, ConfigList);
+                fs.Flush();
+                fs.Close();
+            }
+            catch { };
         }
 
 
@@ -728,6 +744,11 @@ namespace ModSync
             ConfigSelect.SelectedIndex = ConfigListSelect.SelectedIndex = 0;
             ConfigServerURL.ForeColor = Color.Black;
             ConfigServerURL.Tag = true;
+        }
+
+        private void GithubInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/KeyMove/ModSync");
         }
     }
 }

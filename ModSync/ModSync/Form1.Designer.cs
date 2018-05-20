@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Headpanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.exit = new System.Windows.Forms.Button();
             this.bt1 = new System.Windows.Forms.Button();
             this.bt0 = new System.Windows.Forms.Button();
@@ -65,12 +66,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.syncbutton = new System.Windows.Forms.Button();
             this.ConfigSelect = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.GithubInfo = new System.Windows.Forms.LinkLabel();
             this.Headpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.S2.SuspendLayout();
             this.ConfigWhiteFileEnable.SuspendLayout();
             this.S1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Headpanel
@@ -100,6 +101,16 @@
             this.label2.Text = "Mod 同步器";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ModSync.Properties.Resources.x28;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // exit
             // 
@@ -409,6 +420,7 @@
             // S1
             // 
             this.S1.BackgroundImage = global::ModSync.Properties.Resources.L1;
+            this.S1.Controls.Add(this.GithubInfo);
             this.S1.Controls.Add(this.LAB);
             this.S1.Controls.Add(this.LogPanel);
             this.S1.Controls.Add(this.downloadinfoprog);
@@ -500,15 +512,17 @@
             this.ConfigSelect.Size = new System.Drawing.Size(341, 20);
             this.ConfigSelect.TabIndex = 1;
             // 
-            // pictureBox1
+            // GithubInfo
             // 
-            this.pictureBox1.Image = global::ModSync.Properties.Resources.x28;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.GithubInfo.AutoSize = true;
+            this.GithubInfo.BackColor = System.Drawing.Color.Transparent;
+            this.GithubInfo.Location = new System.Drawing.Point(1, 236);
+            this.GithubInfo.Name = "GithubInfo";
+            this.GithubInfo.Size = new System.Drawing.Size(41, 12);
+            this.GithubInfo.TabIndex = 7;
+            this.GithubInfo.TabStop = true;
+            this.GithubInfo.Text = "Github";
+            this.GithubInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GithubInfo_LinkClicked);
             // 
             // Form1
             // 
@@ -527,13 +541,13 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.Headpanel.ResumeLayout(false);
             this.Headpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.S2.ResumeLayout(false);
             this.S2.PerformLayout();
             this.ConfigWhiteFileEnable.ResumeLayout(false);
             this.ConfigWhiteFileEnable.PerformLayout();
             this.S1.ResumeLayout(false);
             this.S1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -577,6 +591,7 @@
         private System.Windows.Forms.Label ConfigName;
         private System.Windows.Forms.Panel LogPanel;
         private System.Windows.Forms.Label LAB;
+        private System.Windows.Forms.LinkLabel GithubInfo;
     }
 }
 
